@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('myApp')
+angular.module('BlurAdmin.servicess')
 
 .factory('WARTracker', ['$http','$q', function WARTrackerFactory($http,$q) {
 

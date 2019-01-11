@@ -5,7 +5,8 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.charts.amCharts')
+  angular.module('BlurAdmin.pages.charts.amCharts',)
+  //angular.module('BlurAdmin.pages.charts.amCharts',['Custom.services.dataServices'])
       .controller('BarChartCtrl', BarChartCtrl);
 
   /** @ngInject */
@@ -152,6 +153,7 @@
            }];
 
            setInterval(function() {
+          //   servicesUtilities.printIt();
                 console.log('data is', theData );
                 deferred.resolve(theData);
            }, 
