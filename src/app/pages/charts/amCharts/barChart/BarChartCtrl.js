@@ -9,14 +9,15 @@
       .controller('BarChartCtrl', BarChartCtrl);
 
   /** @ngInject */
-  function BarChartCtrl($scope, baConfig, $element, layoutPaths) {
+  function BarChartCtrl($scope, baConfig, $element, layoutPaths,$q) {
     var layoutColors = baConfig.colors;
     var id = $element[0].getAttribute('id');
+    
     var barChart = AmCharts.makeChart(id, {
       type: 'serial',
       theme: 'blur',
       color: layoutColors.defaultText,
-      dataProvider: [
+    /*  dataProvider: [
         {
           country: 'USA',
           visits: 3025,
@@ -48,7 +49,10 @@
           visits: 1114,
           color: layoutColors.primaryLight
         }
-      ],
+      ], */
+
+     // dataProvider: loadData(), //loadData().then(function(msg) { return msg } ),
+     dataProvider: loadData1().then(function(msg) {  console.log('made it to the then'); barChart.dataProvider = msg;   barChart.validateData();} ),
       valueAxes: [
         {
           axisAlpha: 0,
@@ -87,5 +91,87 @@
       creditsPosition: 'top-right',
       pathToImages: layoutPaths.images.amChart
     });
+
+    function loadData()   {
+
+     // var deferred = $q.defer();
+  
+      setInterval(function() {
+
+        
+      var theData =   [
+          {
+            country: 'USA',
+            visits: 3025,
+            color: layoutColors.primary
+          },
+          {
+            country: 'China',
+            visits: 1882,
+            color: layoutColors.danger
+  
+          },
+          {
+            country: 'Japan',
+            visits: 1809,
+            color: layoutColors.info
+          }];
+         // deferred.resolve(theData);
+
+         console.log('data is', theData );
+         barChart.dataProvider = theData;
+         barChart.validateData();
+        // return theData;
+      }
+      ,5000);
+
+     // return deferred.promise;
+    
+    }
+
+    function loadData1()   {
+
+       var deferred = $q.defer();
+   
+       var theData =   [
+           {
+             country: 'USA',
+             visits: 3025,
+             color: layoutColors.primary
+           },
+           {
+             country: 'China',
+             visits: 1882,
+             color: layoutColors.danger
+   
+           },
+           {
+             country: 'Japan',
+             visits: 1809,
+             color: layoutColors.info
+           }];
+
+           setInterval(function() {
+                console.log('data is', theData );
+                deferred.resolve(theData);
+           }, 
+           5000);
+          
+
+     
+ 
+      return deferred.promise;
+     
+     }
+ 
+
+
+  
   }
+
+  
+  //loadData()
+   //   .then(function(msg) { return msg } );
+  
+  
 })();
