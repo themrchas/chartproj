@@ -4,15 +4,22 @@
  */
 (function () {
   'use strict';
+  
+ angular.module('BlurAdmin.pages.charts.amCharts')
+ // angular.module('BlurAdmin.pages.charts.amCharts', ['BlurAdmin.services'])
+  //angular.module('BlurAdmin.pages.charts.amCharts', ['servicesUtilities'])
+     .controller('BarChartCtrl', BarChartCtrl);
+   // .controller('BarChartCtrl',['$scope','baConfig', '$element', 'layoutPaths','$q','servicesUtilities',
+   // function ($scope, baConfig, $element, layoutPaths,$q, servicesUtilities) {
 
-  angular.module('BlurAdmin.pages.charts.amCharts',)
-  //angular.module('BlurAdmin.pages.charts.amCharts',['Custom.services.dataServices'])
-      .controller('BarChartCtrl', BarChartCtrl);
-
-  /** @ngInject */
-  function BarChartCtrl($scope, baConfig, $element, layoutPaths,$q) {
+  /* @ngInject */
+  //function BarChartCtrl($scope, baConfig, $element, layoutPaths,$q) {
+    function BarChartCtrl($scope, baConfig, $element, layoutPaths,$q,serviceUtilities) {
+    
     var layoutColors = baConfig.colors;
     var id = $element[0].getAttribute('id');
+
+    serviceUtilities.printIt();
     
     var barChart = AmCharts.makeChart(id, {
       type: 'serial',
@@ -118,7 +125,7 @@
             color: layoutColors.info
           }];
          // deferred.resolve(theData);
-
+        // servicesUtilities.printIt();
          console.log('data is', theData );
          barChart.dataProvider = theData;
          barChart.validateData();

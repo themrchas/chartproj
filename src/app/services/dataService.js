@@ -1,10 +1,10 @@
+(function () {
 
 'use strict';
 
-angular.module('BlurAdmin.servicess')
+angular.module('BlurAdmin.services.raw',[])
 
-.factory('WARTracker', ['$http','$q', function WARTrackerFactory($http,$q) {
-
+.factory('WARTracker', ['$http','$q', function ($http,$q) {
 
 function getGenericCall(url) {
 
@@ -25,7 +25,7 @@ function getGenericCall(url) {
     
     .error (function(err) {
         deferred.reject(err);
-    })
+    });
 }
 
 function getDigest() {
@@ -49,7 +49,7 @@ function getDigest() {
 
     .error (function(err) {
         deferred.reject(err);
-    })
+    });
 }
 
 function getData() {
@@ -75,14 +75,22 @@ function getData() {
 
     .error (function(err) {
         deferred.reject(err);
-    })
+    });
 
 
+}
+
+
+function printFromRaw() {
+    console.log('printed from dataService raw');
 }
 
 return {
     'getGenericCall': getGenericCall,
-    'getDigest': getDigest
-}
+    'getDigest': getDigest,
+    'printFromRaw': printFromRaw
+};
 
 }]);
+
+})();

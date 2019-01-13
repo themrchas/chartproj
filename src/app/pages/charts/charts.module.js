@@ -10,6 +10,10 @@
       'BlurAdmin.pages.charts.chartJs',
       'BlurAdmin.pages.charts.chartist',
       'BlurAdmin.pages.charts.morris'
+      
+      
+      
+      
   ])
       .config(routeConfig);
 
