@@ -20,6 +20,7 @@
     var id = $element[0].getAttribute('id');
 
     serviceUtilities.printIt();
+    serviceUtilities.getListData();
     
     var barChart = AmCharts.makeChart(id, {
       type: 'serial',
