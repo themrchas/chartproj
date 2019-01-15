@@ -26,6 +26,8 @@ function getGenericCall(url) {
     .error (function(err) {
         deferred.reject(err);
     });
+
+    return deferred.promise;
 }
 
 function getDigest() {
@@ -61,23 +63,26 @@ function getDigest() {
 
 
 
-    function getData() {
+    function getData(url) {
+
+        console.log('url in dataServce.getData is',url);
 
         var deferred = $q.defer();
 
-        getDigest().then(function (digest) {
+     //   getDigest().then(function (digest) {
     
             $http({
 
                 // url: "/hq/cmdgrp/_api/Web/Lists/GetByTitle('WAR')/items",
-                url: "http://sp-dev-sp/sites/dev/site1/_api/Web/Lists/GetByTitle('RestList')/items",
-                dataType: 'json',
+               // url: "http://sp-dev-sp/sites/dev/site1/_api/Web/Lists/GetByTitle('RestList')/items",
+                url:url,
+               dataType: 'json',
                 method: 'GET',
                 headers: {
                     "Accept": "application/json;odata=verbose",
-                    "Content-Type": "application/json;odata=verbose",
+                    "Content-Type": "application/json;odata=verbose"
                     //  "X-RequestDigest" : $('#_REQUESTDIGEST').val()
-                    "X-RequestDigest" : digest
+                  //  "X-RequestDigest" : digest
                 }
             })
 
@@ -90,7 +95,7 @@ function getDigest() {
                 });
 
 
-        });
+      //  });
 
         return deferred.promise;
     }

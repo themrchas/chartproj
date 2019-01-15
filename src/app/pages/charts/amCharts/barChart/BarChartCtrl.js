@@ -19,8 +19,8 @@
     var layoutColors = baConfig.colors;
     var id = $element[0].getAttribute('id');
 
-    serviceUtilities.printIt();
-    serviceUtilities.getListData();
+  //  serviceUtilities.printIt();
+  //  serviceUtilities.getListData();
     
     var barChart = AmCharts.makeChart(id, {
       type: 'serial',
@@ -101,7 +101,7 @@
       pathToImages: layoutPaths.images.amChart
     });
 
-    function loadData()   {
+  /*  function loadData()   {
 
      // var deferred = $q.defer();
   
@@ -136,13 +136,13 @@
 
      // return deferred.promise;
     
-    }
+    } */
 
-    function loadData1()   {
+  /*  function loadData1()   {
 
        var deferred = $q.defer();
    
-       var theData =   [
+      var theData =   [
            {
              country: 'USA',
              visits: 3025,
@@ -166,22 +166,57 @@
                 deferred.resolve(theData);
            }, 
            5000);
-          
-
-     
- 
+   
       return deferred.promise;
      
-     }
+     }  */
  
+     function loadData1()   {
 
+      console.log('in loadData1');
+
+      var deferred = $q.defer();
+
+      var url1 = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('RestList')/items(1)";
+
+     console.log('url in loadData1 is', url1);
+     
+      serviceUtilities.getListData(url1).then( function(data) {
+
+        console.log('returned data is ',data);
+        deferred.resolve(theData);
+         
+
+      });
+  
+     var theData =   [
+          {
+            country: 'USA',
+            visits: 3025,
+            color: layoutColors.primary
+          },
+          {
+            country: 'China',
+            visits: 1882,
+            color: layoutColors.danger
+  
+          },
+          {
+            country: 'Japan',
+            visits: 1809,
+            color: layoutColors.info
+          }];
+
+     return deferred.promise;
+    
+    }
 
   
-  }
+ 
 
   
   //loadData()
    //   .then(function(msg) { return msg } );
-  
+  } 
   
 })();

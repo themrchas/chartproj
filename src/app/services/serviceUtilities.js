@@ -16,14 +16,21 @@ angular.module('BlurAdmin.services',['BlurAdmin.services.raw'])
       DataService.printFromRaw();
   }
 
-  function getListData() {
+  function getListData(url) {
     
-    DataService.getData()
+    console.log('url in serviceUtilities.getListData is',url);
+
+    var deferred = $q.defer();
+
+    DataService.getData(url)
         .then(function(data) {
 
             console.log('DataService.getData is', data);
+            deferred.resolve(data);
 
         });
+
+        return deferred.promise;   
 
   } //getListData
 
