@@ -61,7 +61,7 @@
       ], */
 
      // dataProvider: loadData(), //loadData().then(function(msg) { return msg } ),
-     dataProvider: loadData1().then(function(msg) {  console.log('made it to the then'); barChart.dataProvider = msg;   barChart.validateData();} ),
+     dataProvider: loadData1().then(function(msg) {  console.log('made it to the then with data', msg); barChart.dataProvider = msg;   barChart.validateData();} ),
       valueAxes: [
         {
           axisAlpha: 0,
@@ -79,7 +79,9 @@
           fillAlphas: 0.7,
           lineAlpha: 0.2,
           type: 'column',
-          valueField: 'visits'
+        //  valueField: 'visits'
+        valueField: 'followers'
+
         }
       ],
       chartCursor: {
@@ -87,7 +89,8 @@
         cursorAlpha: 0,
         zoomable: false
       },
-      categoryField: 'country',
+     // categoryField: 'country',
+     categoryField: 'name',
       categoryAxis: {
         gridPosition: 'start',
         labelRotation: 45,
@@ -101,75 +104,7 @@
       pathToImages: layoutPaths.images.amChart
     });
 
-  /*  function loadData()   {
-
-     // var deferred = $q.defer();
   
-      setInterval(function() {
-
-        
-      var theData =   [
-          {
-            country: 'USA',
-            visits: 3025,
-            color: layoutColors.primary
-          },
-          {
-            country: 'China',
-            visits: 1882,
-            color: layoutColors.danger
-  
-          },
-          {
-            country: 'Japan',
-            visits: 1809,
-            color: layoutColors.info
-          }];
-         // deferred.resolve(theData);
-        // servicesUtilities.printIt();
-         console.log('data is', theData );
-         barChart.dataProvider = theData;
-         barChart.validateData();
-        // return theData;
-      }
-      ,5000);
-
-     // return deferred.promise;
-    
-    } */
-
-  /*  function loadData1()   {
-
-       var deferred = $q.defer();
-   
-      var theData =   [
-           {
-             country: 'USA',
-             visits: 3025,
-             color: layoutColors.primary
-           },
-           {
-             country: 'China',
-             visits: 1882,
-             color: layoutColors.danger
-   
-           },
-           {
-             country: 'Japan',
-             visits: 1809,
-             color: layoutColors.info
-           }];
-
-           setInterval(function() {
-          //   servicesUtilities.printIt();
-                console.log('data is', theData );
-                deferred.resolve(theData);
-           }, 
-           5000);
-   
-      return deferred.promise;
-     
-     }  */
  
      function loadData1()   {
 
@@ -177,15 +112,15 @@
 
       var deferred = $q.defer();
 
-      //var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('RestList')/items(1)";
-      var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('restTest')/items";
+      var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('RestList')/items";
+      //var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('restTest')/items";
 
      console.log('url in loadData1 is', url);
      
       serviceUtilities.getListData(url).then( function(data) {
 
         console.log('returned data is ',data);
-        deferred.resolve(theData);
+        deferred.resolve(data);
          
 
       });
