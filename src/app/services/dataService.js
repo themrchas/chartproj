@@ -87,7 +87,30 @@ function getDigest() {
             })
 
                 .success(function (data) {
-                    deferred.resolve(data);
+
+                    var test = [];
+                   var item;
+                    
+                 //  data.d.forEach(function(el) {
+                    _.forEach(data.d.results, function(val) {
+                //data.d.results.map(function(el) {}
+
+                item = {};
+                item.name = val.name;
+                item.followers = val.Followers;
+
+                    //var item = '{ name:'+val.name+', followers:'+val.Followers+'}';
+                 //   item['name'] = val.name;
+                 //   item['followers'] = val.Followers;
+
+                    test.push(item)
+
+                        console.log('value in dataService is ',val);
+                        console.log('item in dataService is ',item);
+ 
+                    });
+
+                    deferred.resolve(test);
                 })
 
                 .error(function (err) {

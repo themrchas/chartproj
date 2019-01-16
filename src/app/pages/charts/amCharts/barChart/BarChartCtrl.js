@@ -66,7 +66,7 @@
         {
           axisAlpha: 0,
           position: 'left',
-          title: 'Visitors from country',
+          title: 'Twitter Followers',
           gridAlpha: 0.5,
           gridColor: layoutColors.border,
         }
@@ -177,11 +177,12 @@
 
       var deferred = $q.defer();
 
-      var url1 = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('RestList')/items(1)";
+      //var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('RestList')/items(1)";
+      var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('restTest')/items";
 
-     console.log('url in loadData1 is', url1);
+     console.log('url in loadData1 is', url);
      
-      serviceUtilities.getListData(url1).then( function(data) {
+      serviceUtilities.getListData(url).then( function(data) {
 
         console.log('returned data is ',data);
         deferred.resolve(theData);
