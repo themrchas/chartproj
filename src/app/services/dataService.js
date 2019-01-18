@@ -96,7 +96,7 @@ function getDigest() {
                 //data.d.results.map(function(el) {}
 
                 item = {};
-                item.name = val.Name;
+                item.name = val.name;
                 item.followers = val.Followers;
 
                     //var item = '{ name:'+val.name+', followers:'+val.Followers+'}';
