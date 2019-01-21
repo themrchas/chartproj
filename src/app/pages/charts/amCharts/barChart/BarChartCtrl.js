@@ -112,8 +112,8 @@
 
       var deferred = $q.defer();
 
-      //var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('RestList')/items";
-      var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('restTest')/items";
+      var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('RestList')/items";
+      //var url = "http://localhost:8080/sites/dev/site1/_api/Web/Lists/GetByTitle('restTest')/items";
 
      console.log('url in loadData1 is', url);
      
